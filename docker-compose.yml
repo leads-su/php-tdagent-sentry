@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: ./docker/app/
+    restart: unless-stopped
+    environment:
+      SENTRY_DSN: ${SENTRY_DSN}
+    volumes:
+      - ./src/:/var/www/html/src/
+      - ./composer.json:/var/www/html/composer.json
+    networks:
+      - tdagent-network
+
+  transport:
+    build:
+      context: ./docker/td-agent/
+    restart: unless-stopped
+    environment:
+      SENTRY_ADDR: ${SENTRY_ADDR}
+    networks:
+      - tdagent-network
+
+networks:
+  tdagent-network:
+    driver: bridge
+    ipam:
+      driver: default

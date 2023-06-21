@@ -1,0 +1,18 @@
+{
+  "require": {
+    "php": ">=7.3",
+    "sentry/sdk": "^3.3.0",
+    "fluent/logger": "v1.0.0",
+    "php-http/message-factory": "^1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "TdAgentSentry\\": "src"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  }
+}
